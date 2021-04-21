@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
 import Image from 'next/image';
+import Link from 'next/link'; // com o Link, continua o funcionamento de SPA, sem ter que carregar toda a página ao mover de rota
 import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { api } from '../services/api';
@@ -69,7 +70,9 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                   />
 
                   <div className={styles.episodeDetails}>
-                    <a href={`/episode/${episode.id}`}>{episode.title}</a>
+                    <Link href={`/episodes/${episode.id}`}>
+                      <a>{episode.title}</a>
+                    </Link>
                     <p>{episode.members}</p>
                     <span>{episode.publishedAt}</span>
                     <span>{episode.durationAsString}</span>
